@@ -1,0 +1,165 @@
+#teacher-day-entry-stage,
+#teacher-day-button-stage,
+#teacher-day-send-stage {
+  position: fixed;
+  inset: 0;
+  visibility: hidden;
+  z-index: 2147483644;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .12s linear, visibility 0s linear .12s;
+}
+
+#teacher-day-entry-stage {
+  z-index: 2147483647;
+}
+
+#teacher-day-button-stage {
+  z-index: 2147483645;
+  transition: opacity .08s linear, visibility 0s linear .08s;
+}
+
+#teacher-day-send-stage {
+  z-index: 2147483644;
+  transition: none;
+}
+
+#teacher-day-send-stage .teacher-day-sequence-composition {
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  aspect-ratio: auto;
+  transform: none;
+}
+
+#teacher-day-entry-stage.is-visible,
+#teacher-day-button-stage.is-visible,
+#teacher-day-send-stage.is-visible {
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0s;
+}
+
+.teacher-day-sequence-composition {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(100vw, 160vh);
+  aspect-ratio: 8 / 5;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.teacher-day-entry-animation,
+.teacher-day-entry-frame,
+.teacher-day-button-frame,
+.teacher-day-send-frame,
+.teacher-day-send-flower {
+  position: absolute;
+  display: block;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
+.teacher-day-entry-animation,
+.teacher-day-entry-frame {
+  left: 18.8657%;
+  top: 25.5926%;
+  width: 59.6296%;
+  transform: scale(.82);
+  transform-origin: center center;
+}
+
+.teacher-day-button-frame {
+  left: 44.3287%;
+  top: 35.1852%;
+  width: 33.912%;
+  clip-path: inset(84.0713% 51.6041% 0 0);
+  transition: opacity .16s ease, filter .16s ease;
+}
+
+.teacher-day-send-frame,
+.teacher-day-send-flower {
+  left: 20.5093%;
+  top: 19.963%;
+  width: 57.7315%;
+}
+
+.teacher-day-send-flower {
+  left: 50%;
+  top: 70vh;
+  width: clamp(72px, 9.5vw, 154px);
+  max-width: none;
+  transform-origin: 50% 92%;
+  offset-anchor: 50% 92%;
+  offset-distance: 0%;
+  offset-rotate: 0deg;
+  opacity: 0;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+.teacher-day-send-flower.is-playing {
+  animation:
+    teacher-day-send-flower-travel 2.2s cubic-bezier(.22, .5, .32, 1) forwards,
+    teacher-day-send-flower-opacity 2.2s linear forwards,
+    teacher-day-send-flower-pose 2.2s cubic-bezier(.22, .5, .32, 1) forwards;
+}
+
+@keyframes teacher-day-send-flower-travel {
+  from { offset-distance: 0%; }
+  to { offset-distance: 100%; }
+}
+
+@keyframes teacher-day-send-flower-opacity {
+  0% { opacity: 0; }
+  14% { opacity: 1; }
+  82% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes teacher-day-send-flower-pose {
+  0% { transform: scale(.54) rotate(0deg); }
+  18% { transform: scale(var(--flower-scale, .9)) rotate(calc(var(--flower-rotation, 0deg) * .16)); }
+  100% { transform: scale(calc(var(--flower-scale, .9) * .88)) rotate(var(--flower-rotation, 0deg)); }
+}
+
+#teacher-day-flower-trigger {
+  position: absolute;
+  left: 44.3287%;
+  top: 85.8148%;
+  width: 16.412%;
+  height: 9.5926%;
+  z-index: 2;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  outline: 0;
+  background: transparent;
+  cursor: pointer;
+  pointer-events: auto;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#teacher-day-flower-trigger:disabled {
+  cursor: default;
+}
+
+#teacher-day-flower-trigger:focus-visible {
+  outline: 3px solid rgba(77, 123, 255, .6);
+  outline-offset: 3px;
+}
+
+#teacher-day-button-stage:has(#teacher-day-flower-trigger:hover) .teacher-day-button-frame {
+  filter: brightness(1.04) saturate(1.04);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #teacher-day-entry-stage,
+  #teacher-day-button-stage {
+    transition: none;
+  }
+}

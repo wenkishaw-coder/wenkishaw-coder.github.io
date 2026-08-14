@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>百度教师节彩蛋预览</title>
+  <link rel="preload" href="envelope-animation.webp?v=flowers-814-1" as="image" type="image/webp" fetchpriority="high">
+  <link rel="stylesheet" href="styles.css?v=flowers-814-1">
+  <style>
+    html,body{margin:0;width:100%;min-height:100%;background:#fff}
+    body{overflow:hidden}
+    .page-frame{position:fixed;inset:0;width:100%;height:100%;border:0;background:#fff}
+  </style>
+</head>
+<body>
+  <iframe
+    class="page-frame"
+    src="saved-page/%E6%95%99%E5%B8%88%E8%8A%82_%E7%99%BE%E5%BA%A6%E6%90%9C%E7%B4%A2.html"
+    title="百度教师节搜索页"
+    loading="eager"></iframe>
+  <script>
+    const pageFrame = document.querySelector(".page-frame");
+    const replaceSearchLogo = () => {
+      const frameDocument = pageFrame.contentDocument;
+      if (!frameDocument) return;
+      const logoUrl = new URL(
+        "saved-page/教师节_百度搜索_files/teacher-day-logo-custom.png?v=logo-814-1",
+        location.href
+      ).href;
+      frameDocument.querySelectorAll("#result_logo img").forEach(image => {
+        image.src = logoUrl;
+      });
+    };
+    pageFrame.addEventListener("load", replaceSearchLogo);
+    if (pageFrame.contentDocument?.readyState === "complete") {
+      replaceSearchLogo();
+    }
+  </script>
+  <script src="content.js?v=flowers-814-1"></script>
+</body>
+</html>
